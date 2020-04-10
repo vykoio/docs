@@ -28,7 +28,7 @@ body {
 }
 
 nav {
-  display: none;
+  display: none !important;
 }
 
 .codeBlockLines_node_modules-\@docusaurus-theme-classic-src-theme-CodeBlock-,
