@@ -4,6 +4,8 @@ title: Overview
 sidebar_label: Overview
 ---
 
+If you have any issues or further questions, please don't hesitate to contact our [support team](https://vyko.io/support).
+
 ## Schema
 
 All API access is via **HTTPs** and the base path of the URL is `https://api.vyko.io`. It is important to note that the API body format \(both receiving and sending\) is in **JSON**. Therefore, it is reccomended to set the `Content-Type` header to `application/json`.
@@ -12,9 +14,9 @@ Timestamps are represented as **miliseconds** \(not seconds like unix systems\) 
 
 ## Authentication
 
-For obvious reasons, many of our endpoints will return sensitive information regarding client's data. For this reason, we've devised a secure authentication scheme that is required for many requests.
+For obvious reasons, many of our endpoints will return sensitive information regarding client's data. For this reason, we've devised a secure authentication scheme that is required for the majority of requests.
 
-You can generate your API tokens within your dashboard and must include them in the request body under the key `token` or, alternatively, you may also specify the token within the `Authorization` \***\*header of type `bearer`**.\*\*
+You can generate your API tokens within your dashboard and must include them in the request body under the key `token` or, alternatively, you may also specify the token within the `Authorization` header of type **`bearer`.**
 
 **See below for examples for both methods.**
 
@@ -71,3 +73,26 @@ These remain the same for all request types \(GET, POST, PUT/PATCH and DELETE\) 
 | 429         | The user has made too many requests in the endpoint specific allotted timespan. Rate limiting has now been enforced. |
 
 Any other response codes are as per [HTTP specification](https://tools.ietf.org/html/rfc7231).
+
+## Languages
+
+We're trying to provide our platform in as many languages as possible. If you're willing to help us and receive special rewards, see our [GitHub repository](https://github.com/vykoio/translations) for more information.
+
+As for setting your chosen language when making requests to our API, this can be done quite easily.
+
+By default, our system will check the request's `Accept-Language` header and determine the best _available_ language to respond in. However, if you want to change this, this can be done in the request body (with POST requests and such) or within the request query parameters.
+
+Please provide the desired language in a [two letter language (ISO 639-1) code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+
+Example Request Body:
+
+```javascript
+{
+    //Your request body would go here
+    "language": "ko"
+}
+```
+
+Example Query Param:
+
+`https://api.vyko.io/inbox?language=ko`

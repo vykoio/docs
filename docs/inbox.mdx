@@ -4,10 +4,284 @@ title: Inbox
 sidebar_label: Inbox
 ---
 
-import { Highlight } from "../components/Highlight.js";
+import { Pill } from "../components/Components.js";
 
-## GET /
+Base Endpoint: `https://api.vyko.io/inbox`
 
-## <Highlight color="#25c2a0">GET</Highlight> https://vyko.io/poo
+## Base
 
-_hello_
+### <Pill type="GET">GET</Pill> /
+
+Gets list of all inboxes you are a member/owner of.
+
+**No parameters are required.**
+
+Example Response:
+
+```json
+[
+  {
+    "id": 162192256772776,
+    "created": 1586607306321, //Timestamp of inbox creation
+    "last_email": 1586607316590, //Timestamp of last received email
+    "emails": 32, //Current count of emails within inbox
+    "owner": true, //Is current API bearer owner of inbox
+    "role": 10 //See GET /roles
+  },
+  {
+    "id": 252191456772326,
+    "created": 1486607306321, //Timestamp of inbox creation
+    "last_email": 1586609125002, //Timestamp of last received email
+    "emails": 8, //Current count of emails within inbox
+    "owner": false, //Is current API bearer owner of inbox
+    "role": 1 //See GET /roles
+  }
+]
+```
+
+### <Pill type="GET">GET</Pill> /:id/:email_count?
+
+Gets all the emails within a certain inbox.
+
+Parameters:
+
+| Parameter   | Required | Description                                        |
+| ----------- | -------- | -------------------------------------------------- |
+| id          | Yes      | ID of inbox.                                       |
+| email_count | No       | Amount of messages to be returned. Defaults to 50. |
+
+Example Response:
+
+```json
+[
+  {
+    "id": 133540951194392, //Email ID
+    "inbox_id": 162192256772776, //Inbox ID
+    "received": 1586607306548, //Timestamp of when message was received
+    "from_email": "test@vyko.email", //From email
+    "from_name": "Vyko Test Mail", //From display name
+    "to_email": "receive@vyko.email", //Recipient email
+    "to_name": "Vyko Receiver", //Receipient display name
+    "plain": "This was a test email!", //Plaintext contents of email
+    "html": "This was a <i>test</i> email! In <b>HTML</b>!" //HTML contents of email
+  },
+  {
+    "id": 245540951194542,
+    "inbox_id": 162192256772776,
+    "received": 1586607316590,
+    "from_email": "test@vyko.email",
+    "from_name": "Vyko Test Mail",
+    "to_email": "receive@vyko.email",
+    "to_name": "Vyko Receiver",
+    "plain": "This was a test email 2!",
+    "html": "This was a <i>test</i> 2 email! In <b>HTML</b>! Again..."
+  }
+]
+```
+
+### <Pill type="POST">POST</Pill> /
+
+Create an inbox.
+
+Parameters:
+
+| Attribute | Required | Description             |
+| --------- | -------- | ----------------------- |
+| name      | Yes      | Display name for inbox. |
+
+Example Request Body:
+
+```json
+{
+  "name": "Vyko Inbox"
+}
+```
+
+Example Response:
+
+```json
+{
+  "success": true,
+  "id": 162192256772776, //New inbox ID
+  "name": "Vyko Inbox"
+}
+```
+
+### <Pill type="DELETE">DELETE</Pill> /:id
+
+Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /email/:inbox_id/:id?](#delete-emailinbox_idid)
+
+| Parameter | Required | Description  |
+| --------- | -------- | ------------ |
+| id        | Yes      | ID of inbox. |
+
+Example Response:
+
+```json
+{
+  "success": true
+}
+```
+
+## Email
+
+This section refers to various endpoints associated directly with emails received within an inbox.
+
+### <Pill type="GET">GET</Pill> /email/:id
+
+Gets a specific email.
+
+| Parameter | Required | Description  |
+| --------- | -------- | ------------ |
+| id        | Yes      | ID of email. |
+
+```json
+{
+  "id": 245540951194542,
+  "inbox_id": 162192256772776,
+  "received": 1586607316590,
+  "from_email": "test@vyko.email",
+  "from_name": "Vyko Test Mail",
+  "to_email": "receive@vyko.email",
+  "to_name": "Vyko Receiver",
+  "plain": "This was a test email 2!",
+  "html": "This was a <i>test</i> 2 email! In <b>HTML</b>! Again..."
+}
+```
+
+### <Pill type="DELETE">DELETE</Pill> /:inbox_id/email/:id?
+
+Removes either all the emails within the inbox or a certain email within such if the ID is provided.
+
+Parameters:
+
+| Parameter | Required | Description                                                                                                   |
+| --------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| inbox_id  | Yes      | ID of inbox.                                                                                                  |
+| id        | No       | ID of email you want removed. **If not provided, _all emails_ within the provided inbox ID will be removed**. |
+
+Example Response:
+
+```json
+{
+  "success": true,
+  "count": 50 //If whole inbox was removed, returns the total deleted.
+}
+```
+
+## User (Members)
+
+Each inbox has the ability to add "members" or users that effectively have the rights to access that inbox as well. Users can be added, removed and restricted in each inbox with relative ease.
+
+### <Pill type="POST">GET</Pill> /:inbox_id/users
+
+Lists all the current users within the inbox.
+
+| Attribute | Required | Description |
+| --------- | -------- | ----------- |
+| inbox_id  | Yes      | ID of inbox |
+
+Example Response:
+
+```json
+[
+  {
+    "id": 123540951194542, //User ID
+    "role": 2,
+    "joined": 1586607316590 //Timestamp when user joined inbox
+  },
+  {
+    "id": 246540951194542, //User ID
+    "owner": true, //Each inbox has an owner
+    "role": 10,
+    "joined": 1576613942174 //Timestamp when user joined inbox
+  }
+]
+```
+
+### <Pill type="POST">POST</Pill> /users/invite
+
+Invites a certain user to an inbox. If the user does not yet have an account, supplying their email in their username field will invite them both to create an account and then join the inbox.
+
+| Attribute | Required | Description                                                              |
+| --------- | -------- | ------------------------------------------------------------------------ |
+| id        | Yes      | ID of inbox                                                              |
+| username  | Yes      | Username OR Email of invitee                                             |
+| role      | No       | Invitee's role ID. Defaults to 1 (member).  [See GET /roles](#get-roles) |
+
+```json
+{
+  "success": true
+}
+```
+
+### <Pill type="PATCH">PATCH</Pill> /users/role
+
+Updates a specified user's role.
+
+| Attribute | Required | Description                                                               |
+| --------- | -------- | ------------------------------------------------------------------------- |
+| id        | Yes      | ID of inbox                                                               |
+| user_id   | Yes      | ID of user                                                                |
+| role      | No       | User's new role ID. Defaults to 1 (member).  [See GET /roles](#get-roles) |
+
+```json
+{
+  "success": true
+}
+```
+
+### <Pill type="GET">GET</Pill> /:inbox_id/users/leave/:id?
+
+Leaves inbox or removes a certain user from the inbox (if `user_id` is specified).
+
+**Note:** To remove a user from the inbox, the API bearer must have at least Administrator priviledges ([role 2](#get-roles) or higher). Obviously anyone with any permissions can leave themselves, though.
+
+| Attribute | Required | Description                                                                                                       |
+| --------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| inbox_id  | Yes      | ID of inbox.                                                                                                      |
+| id        | No       | ID of user that should be removed. If this is not provided, the requester will be removed from the inbox instead. |
+
+Example Response:
+
+```json
+{
+  "success": true
+}
+```
+
+### <Pill type="GET">GET</Pill> /roles
+
+When adding a new member to an inbox, a role can be assigned which has assocaited privileges.
+
+A request is available for this, but the data more or less stays static:
+
+| Role | Name          | Priviledges                                                                                                  |
+| ---- | ------------- | ------------------------------------------------------------------------------------------------------------ |
+| 0    | Visitor       | User is able to see messages.                                                                                |
+| 1    | Member        | User is able to see messages.                                                                                |
+| 2    | Administrator | User is able to see and delete messages along with being able to invite and remove new members to the inbox. |
+| 10   | Owner         | User has all possible priviledges.                                                                           |
+
+Anyway, if you choose to make the request anyway, here's an example response:
+
+```json
+[
+  {
+    "id": 0,
+    "name": "Visitor"
+  },
+  {
+    "id": 1,
+    "name": "Member"
+  },
+  {
+    "id": 2,
+    "name": "Administrator"
+  },
+  {
+    "id": 10,
+    "name": "Owner"
+  }
+]
+```
