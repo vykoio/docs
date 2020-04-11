@@ -40,7 +40,8 @@ nav {
 
 .codeBlockLines_node_modules-\@docusaurus-theme-classic-src-theme-CodeBlock-,
 .prism-code,
-.codeBlockLines_node_modules-\@docusaurus-theme-classic-src-theme-CodeBlock- {
+.codeBlockLines_node_modules-\@docusaurus-theme-classic-src-theme-CodeBlock-,
+.codeBlockLines_2n9r[style] {
   background-color: #101118 !important;
   border-radius: 5px !important;
 }
