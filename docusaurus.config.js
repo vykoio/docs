@@ -36,7 +36,7 @@ module.exports = {
         docs: {
           routeBasePath: "",
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/vykoio/docs/edit/master/website/",
+          editUrl: "https://github.com/vykoio/docs/blob/master/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

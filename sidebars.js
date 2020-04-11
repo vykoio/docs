@@ -1,5 +1,6 @@
 module.exports = {
-  someSidebar: {
+  main: {
     "Getting Started": ["overview"],
+    "API Endpoints": ["inbox"],
   },
 };

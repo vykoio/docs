@@ -25,6 +25,9 @@ body {
   --ifm-code-font-size: 95%;
   --ifm-color-gray-700: #bdc3c71a;
   --ifm-code-background: #101118;
+  --ifm-navbar-height: 1rem;
+  --ifm-table-border-width: 1px !important;
+  --ifm-table-stripe-background: inherit !important;
 }
 
 nav {
@@ -32,7 +35,8 @@ nav {
 }
 
 .codeBlockLines_node_modules-\@docusaurus-theme-classic-src-theme-CodeBlock-,
-.prism-code {
+.prism-code,
+.codeBlockLines_node_modules-\@docusaurus-theme-classic-src-theme-CodeBlock- {
   background-color: #101118 !important;
   border-radius: 5px !important;
 }
