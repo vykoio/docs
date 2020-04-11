@@ -26,14 +26,23 @@ body {
   --ifm-color-gray-700: #bdc3c71a;
   --ifm-code-background: #101118;
   --ifm-navbar-height: 1rem;
+  --ifm-color-secondary: #1c1c25 !important;
   --ifm-table-border-width: 1px !important;
   --ifm-table-stripe-background: inherit !important;
+  --ifm-color-secondary-dark: #101118 !important;
 }
 
 .markdown > h3 {
   margin-bottom: 20px !important;
 }
 
+.button.button--secondary.button--sm.menu__button path {
+  stroke: white !important;
+}
+
+.sidebarMenuCloseIcon_node_modules-\@docusaurus-theme-classic-src-theme-DocSidebar- {
+  color: white !important;
+}
 nav {
   display: none !important;
 }
