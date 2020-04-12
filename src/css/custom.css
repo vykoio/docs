@@ -23,13 +23,37 @@ body {
   --ifm-navbar-background-color: #1c1c25;
   --ifm-background-color: #12131a !important;
   --ifm-code-font-size: 95%;
+  --ifm-background-surface-color: #12131a;
   --ifm-color-gray-700: #bdc3c71a;
+  --ifm-table-border-color: #bdc3c71a;
+  --ifm-contents-border-color: #bdc3c71a !important;
   --ifm-code-background: #101118;
   --ifm-navbar-height: 1rem;
   --ifm-color-secondary: #1c1c25 !important;
+  --ifm-heading-color: #fff !important;
+  --ifm-table-cell-color: #bdc3c7 !important;
+  --ifm-menu-color: #bdc3c7 !important;
+  --ifm-table-head-color: #fff !important;
+  --ifm-color-secondary-darker: #12131a;
+  --ifm-menu-color-background-hover: #1c1c25 !important;
+  --ifm-menu-color-background-active: #1c1c25 !important;
+  --ifm-menu-link-sublist-icon: url('data:image/svg+xml;utf8,<svg alt="Arrow" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgb(127,127,131)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+  --ifm-code-color: #bdc3c7 !important;
   --ifm-table-border-width: 1px !important;
   --ifm-table-stripe-background: inherit !important;
   --ifm-color-secondary-dark: #101118 !important;
+}
+
+.menu.menu--show {
+  background-color: #12131a !important;
+}
+
+.contents__link {
+  color: #7a838f !important;
+}
+
+.contents__link.contents__link--active {
+  color: #6c5ce7 !important;
 }
 
 .markdown > h3 {
