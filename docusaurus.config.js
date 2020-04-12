@@ -1,5 +1,5 @@
 module.exports = {
-  title: "Vyko",
+  title: "Vyko Documentation",
   tagline: "The tagline of my site",
   url: "https://vyko.io",
   baseUrl: "/",
