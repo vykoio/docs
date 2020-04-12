@@ -42,6 +42,7 @@ body {
   --ifm-table-border-width: 1px !important;
   --ifm-table-stripe-background: inherit !important;
   --ifm-color-secondary-dark: #101118 !important;
+  --ifm-color-content: #fff !important;
 }
 
 .menu.menu--show {
