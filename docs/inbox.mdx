@@ -169,7 +169,7 @@ Example Response:
 }
 ```
 
-## User (Members)
+## Members
 
 Each inbox has the ability to add "members" or users that effectively have the rights to access that inbox as well. Users can be added, removed and restricted in each inbox with relative ease.
 
@@ -259,7 +259,7 @@ A request is available for this, but the data more or less stays static:
 | Role | Name          | Priviledges                                                                                                  |
 | ---- | ------------- | ------------------------------------------------------------------------------------------------------------ |
 | 0    | Visitor       | User is able to see messages.                                                                                |
-| 1    | Member        | User is able to see messages.                                                                                |
+| 1    | User          | User is able to see messages.                                                                                |
 | 2    | Administrator | User is able to see and delete messages along with being able to invite and remove new members to the inbox. |
 | 10   | Owner         | User has all possible priviledges.                                                                           |
 
@@ -273,7 +273,7 @@ Anyway, if you choose to make the request anyway, here's an example response:
   },
   {
     "id": 1,
-    "name": "Member"
+    "name": "User"
   },
   {
     "id": 2,
