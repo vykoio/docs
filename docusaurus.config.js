@@ -6,6 +6,12 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "vykoio", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.
+  scripts: [
+    {
+      src: "https://cdn.oxro.io/js/vyko-chat.js",
+      async: true,
+    },
+  ],
   themeConfig: {
     navbar: {
       title: null,

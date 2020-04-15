@@ -39,16 +39,17 @@ Example Response:
 ]
 ```
 
-### <Pill type="GET">GET</Pill> /:id/:email_count?
+### <Pill type="GET">GET</Pill> /:id/:to?/:from?
 
 Gets all the emails within a certain inbox.
 
 Parameters:
 
-| Parameter   | Required | Description                                        |
-| ----------- | -------- | -------------------------------------------------- |
-| id          | Yes      | ID of inbox.                                       |
-| email_count | No       | Amount of messages to be returned. Defaults to 50. |
+| Parameter | Required | Description                                                                                                                                                                                  |
+| --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id        | Yes      | ID of inbox.                                                                                                                                                                                 |
+| to        | No       | Amount of emails to retrieve. Defaults to 50.                                                                                                                                                |
+| from      | No       | Where to start retrieving messages from (e.g with pagination and you've already retrieved the first 50 emails and you want to get the next 50, set **from** to **50**). Default is disabled. |
 
 Example Response:
 
@@ -109,7 +110,7 @@ Example Response:
 
 ### <Pill type="DELETE">DELETE</Pill> /:id
 
-Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /email/:id/:email_id?](#delete-idemailemail_id)
+Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /:id/email/:email_id?](#delete-idemailemail_id)
 
 | Parameter | Required | Description  |
 | --------- | -------- | ------------ |
@@ -285,3 +286,5 @@ Anyway, if you choose to make the request anyway, here's an example response:
   }
 ]
 ```
+
+
