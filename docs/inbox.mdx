@@ -109,7 +109,7 @@ Example Response:
 
 ### <Pill type="DELETE">DELETE</Pill> /:id
 
-Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /email/:inbox_id/:id?](#delete-emailinbox_idid)
+Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /email/:id/:email_id?](#delete-idemailemail_id)
 
 | Parameter | Required | Description  |
 | --------- | -------- | ------------ |
@@ -149,7 +149,7 @@ Gets a specific email.
 }
 ```
 
-### <Pill type="DELETE">DELETE</Pill> /:inbox_id/email/:id?
+### <Pill type="DELETE">DELETE</Pill> /:id/email/:email_id?
 
 Removes either all the emails within the inbox or a certain email within such if the ID is provided.
 
@@ -157,8 +157,8 @@ Parameters:
 
 | Parameter | Required | Description                                                                                                   |
 | --------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| inbox_id  | Yes      | ID of inbox.                                                                                                  |
-| id        | No       | ID of email you want removed. **If not provided, _all emails_ within the provided inbox ID will be removed**. |
+| id        | Yes      | ID of inbox.                                                                                                  |
+| email_id  | No       | ID of email you want removed. **If not provided, _all emails_ within the provided inbox ID will be removed**. |
 
 Example Response:
 
@@ -173,13 +173,13 @@ Example Response:
 
 Each inbox has the ability to add "members" or users that effectively have the rights to access that inbox as well. Users can be added, removed and restricted in each inbox with relative ease.
 
-### <Pill type="POST">GET</Pill> /:inbox_id/users
+### <Pill type="POST">GET</Pill> /:id/members
 
 Lists all the current users within the inbox.
 
 | Attribute | Required | Description |
 | --------- | -------- | ----------- |
-| inbox_id  | Yes      | ID of inbox |
+| id        | Yes      | ID of inbox |
 
 Example Response:
 
@@ -199,7 +199,7 @@ Example Response:
 ]
 ```
 
-### <Pill type="POST">POST</Pill> /users/invite
+### <Pill type="POST">POST</Pill> /members/invite
 
 Invites a certain user to an inbox. If the user does not yet have an account, supplying their email in their username field will invite them both to create an account and then join the inbox.
 
@@ -215,7 +215,7 @@ Invites a certain user to an inbox. If the user does not yet have an account, su
 }
 ```
 
-### <Pill type="PATCH">PATCH</Pill> /users/role
+### <Pill type="PATCH">PATCH</Pill> /members/role
 
 Updates a specified user's role.
 
@@ -231,7 +231,7 @@ Updates a specified user's role.
 }
 ```
 
-### <Pill type="GET">GET</Pill> /:inbox_id/users/leave/:id?
+### <Pill type="GET">GET</Pill> /:id/members/leave/:user_id?
 
 Leaves inbox or removes a certain user from the inbox (if `user_id` is specified).
 
@@ -239,8 +239,8 @@ Leaves inbox or removes a certain user from the inbox (if `user_id` is specified
 
 | Attribute | Required | Description                                                                                                       |
 | --------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| inbox_id  | Yes      | ID of inbox.                                                                                                      |
-| id        | No       | ID of user that should be removed. If this is not provided, the requester will be removed from the inbox instead. |
+| id        | Yes      | ID of inbox.                                                                                                      |
+| user_id   | No       | ID of user that should be removed. If this is not provided, the requester will be removed from the inbox instead. |
 
 Example Response:
 
