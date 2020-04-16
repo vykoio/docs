@@ -108,6 +108,27 @@ Example Response:
 }
 ```
 
+### <Pill type="POST">GET</Pill> /:id/credentials
+
+Returns the email and password.
+
+**Note:** Yes, the email and password will be returned in plaintext. It is encrypted in our database, however. This is not insecure because the worst anyone is able to do is just send emails into your inbox. However, you can set a custom password for your inbox and such will be encrypted and not able to be returned to your team - sharing is annoying, especially when it's being regenerated.
+
+Parameters:
+
+| Attribute | Required | Description  |
+| --------- | -------- | ------------ |
+| id        | Yes      | ID of inbox. |
+
+Example Response:
+
+```json
+{
+  "email": "or80yt92qxxcn1c",
+  "password": "Smse*Li(rEZ0BKpMsKOuVDlse~18V%>6"
+}
+```
+
 ### <Pill type="DELETE">DELETE</Pill> /:id
 
 Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /:id/email/:email_id?](#delete-idemailemail_id)
@@ -128,13 +149,13 @@ Example Response:
 
 This section refers to various endpoints associated directly with emails received within an inbox.
 
-### <Pill type="GET">GET</Pill> /email/:id
+### <Pill type="GET">GET</Pill> /email/:email_id
 
 Gets a specific email.
 
 | Parameter | Required | Description  |
 | --------- | -------- | ------------ |
-| id        | Yes      | ID of email. |
+| email_id  | Yes      | ID of email. |
 
 ```json
 {
@@ -286,5 +307,3 @@ Anyway, if you choose to make the request anyway, here's an example response:
   }
 ]
 ```
-
-
