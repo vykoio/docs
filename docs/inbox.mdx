@@ -61,8 +61,10 @@ Example Response:
     "received": 1586607306548, //Timestamp of when message was received
     "from_email": "test@vyko.email", //From email
     "from_name": "Vyko Test Mail", //From display name
-    "to_email": "receive@vyko.email", //Recipient email
-    "to_name": "Vyko Receiver", //Receipient display name
+    "to": [
+      { "email": "receive@vyko.email", "name": "Vyko Receiver" },
+      { "email": "eddie@oxro.io", "name": "Edward Jibson" }
+    ],
     "plain": "This was a test email!", //Plaintext contents of email
     "html": "This was a <i>test</i> email! In <b>HTML</b>!" //HTML contents of email
   },
@@ -72,8 +74,10 @@ Example Response:
     "received": 1586607316590,
     "from_email": "test@vyko.email",
     "from_name": "Vyko Test Mail",
-    "to_email": "receive@vyko.email",
-    "to_name": "Vyko Receiver",
+    "to": [
+      { "email": "receive@vyko.email", "name": "Vyko Receiver" },
+      { "email": "eddie@oxro.io", "name": "Edward Jibson" }
+    ],
     "plain": "This was a test email 2!",
     "html": "This was a <i>test</i> 2 email! In <b>HTML</b>! Again..."
   }
@@ -189,8 +193,10 @@ Gets a specific email.
   "received": 1586607316590,
   "from_email": "test@vyko.email",
   "from_name": "Vyko Test Mail",
-  "to_email": "receive@vyko.email",
-  "to_name": "Vyko Receiver",
+  "to": [
+    { "email": "receive@vyko.email", "name": "Vyko Receiver" },
+    { "email": "eddie@oxro.io", "name": "Edward Jibson" }
+  ],
   "plain": "This was a test email 2!",
   "html": "This was a <i>test</i> 2 email! In <b>HTML</b>! Again..."
 }
