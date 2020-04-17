@@ -1,5 +1,6 @@
-var https = require("follow-redirects").https;
-var fs = require("fs");
+const https = require("follow-redirects").https,
+  fs = require("fs"),
+  config = require("./config.json");
 console.log("CLEARING CACHE FOR DOCS...\n");
 
 let fileFolders = "./docs/";
@@ -16,7 +17,7 @@ var options = {
   hostname: "api.cloudflare.com",
   path: "/client/v4/zones/19988a5553e9b6ac9389aab2864fd44b/purge_cache",
   headers: {
-    Authorization: "Bearer _6L73tTNAYVCS_cTVxML9AREjz1fh7yhRwhskEe_",
+    Authorization: "Bearer " + config.cloudflare,
     "Content-Type": "application/json",
     Cookie: "__cfduid=d584748f772b269ff82a662d6c4f3858d1587129503",
   },
