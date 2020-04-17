@@ -108,27 +108,6 @@ Example Response:
 }
 ```
 
-### <Pill type="POST">GET</Pill> /:id/credentials
-
-Returns the email and password.
-
-**Note:** Yes, the email and password will be returned in plaintext. It is encrypted in our database, however. This is not insecure because the worst anyone is able to do is just send emails into your inbox. However, you can set a custom password for your inbox and such will be encrypted and not able to be returned to your team - sharing is annoying, especially when it's being regenerated.
-
-Parameters:
-
-| Attribute | Required | Description  |
-| --------- | -------- | ------------ |
-| id        | Yes      | ID of inbox. |
-
-Example Response:
-
-```json
-{
-  "email": "or80yt92qxxcn1c",
-  "password": "Smse*Li(rEZ0BKpMsKOuVDlse~18V%>6"
-}
-```
-
 ### <Pill type="DELETE">DELETE</Pill> /:id
 
 Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /:id/email/:email_id?](#delete-idemailemail_id)
@@ -142,6 +121,51 @@ Example Response:
 ```json
 {
   "success": true
+}
+```
+
+## Credentials
+
+Control and retrieve a specified inbox credentials.
+
+### <Pill type="GET">GET</Pill> /:id/credentials
+
+Returns the email and password.
+
+**Note:** Yes, the email and password will be returned in plaintext. It is encrypted in our database, however. This is not insecure because the worst anyone is able to do is just send emails into your inbox. However, you can set a custom password for your inbox and such will be encrypted and not able to be returned to your team - this is not default as sharing and managing distrubtion of such is annoying and time consuming, especially when values are being regenerated often.
+
+Parameters:
+
+| Attribute | Required | Description  |
+| --------- | -------- | ------------ |
+| id        | Yes      | ID of inbox. |
+
+Example Response:
+
+```json
+{
+  "email": "or80yt92qxxcn1c@vyko.email",
+  "password": "Smse*Li(rEZ0BKpMsKOuVDlse~18V%>6"
+}
+```
+
+### <Pill type="GET">GET</Pill> /:id/credentials/reset/:type?
+
+Resets the email and/or password and returns the newly generated values.
+
+Parameters:
+
+| Attribute | Required | Description                                                                                                                                                                |
+| --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id        | Yes      | ID of inbox.                                                                                                                                                               |
+| value     | No       | If you just want to reset the email or password, specify such here - value must either be `email` or `password`. Do not provide/leave empty if both values are to be reset |
+
+Example Response:
+
+```json
+{
+  "email": "prhbds21345@vyko.email",
+  "password": "+6nCcs/Bz&P(j^(azCtG@9yXGkhzGF6"
 }
 ```
 
