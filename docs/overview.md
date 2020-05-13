@@ -74,6 +74,32 @@ These remain the same for all request types \(GET, POST, PUT/PATCH and DELETE\) 
 
 Any other response codes are as per [HTTP specification](https://tools.ietf.org/html/rfc7231).
 
+## Error handling
+
+If you'd rather go by other factors which may provide more information, besides the status code, our response body should be of assistance.
+
+If a request is of a success, there will always be a `success` key included within the body. If there's an error, an `error` key will instead be included.
+
+See below for an example.
+
+Success:
+
+```javascript
+{
+    "success": true
+    //...rest of response body
+}
+```
+
+Error:
+
+```javascript
+{
+    "error": "Some error in your language would be here"
+    //...rest of error response body (if any)
+}
+```
+
 ## Languages
 
 We're trying to provide our platform in as many languages as possible. If you're willing to help us and receive special rewards, see our [GitHub repository](https://github.com/vykoio/translations) for more information.

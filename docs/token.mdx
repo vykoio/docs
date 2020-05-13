@@ -10,6 +10,8 @@ import { Pill } from "../components/Components.js";
 
 ## <Pill type="GET">GET</Pill> /
 
+**No parameters are required.**
+
 Gets a list of all your active tokens (ID and time created). This will **NOT** reveal the actual token as you can only view this ONCE upon creation.
 
 Example Response:
@@ -27,6 +29,27 @@ Example Response:
     "id": 120354109493277
   }
 ]
+```
+
+## <Pill type="GET">GET</Pill> /verify
+
+**No parameters are required (except obviously [making sure your token is included in the request](/overview#authentication))**
+
+Verifies if your token is indeed valid. If it is, your user information will be returned, too.
+
+Example Response:
+
+```json
+{
+  "success": true,
+  "username": "eddie",
+  "email": "support@vyko.io",
+  "active": true,
+  "plan": 2,
+  "profile": {
+    "avatar": "https://avatar.oxro.io/avatar.svg?name=eddie&length=1&background=BCA0F0&bold=true&caps=1"
+  }
+}
 ```
 
 ## <Pill type="POST">POST</Pill> /
