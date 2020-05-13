@@ -16,9 +16,9 @@ Timestamps are represented as **miliseconds** \(not seconds like unix systems\) 
 
 For obvious reasons, many of our endpoints will return sensitive information regarding client's data. For this reason, we've devised a secure authentication scheme that is required for the majority of requests.
 
-You can generate your API tokens within your dashboard and must include them in the request body under the key `token` or, alternatively, you may also specify the token within the `Authorization` header of type **`bearer`.**
+You can generate your API tokens within your dashboard or [our API Endpoint](/token#post-) and one must be specified within the **`Authorization`** header of type **`Bearer`** (This is reccomended). Or, alternatively, it can also be specified within the the request body (or params, for a `GET` request) under the key `token`.
 
-**See below for examples for both methods.**
+**Examples can be seen below for both methods.**
 
 ### Header \(reccomended\)
 

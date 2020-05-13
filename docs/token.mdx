@@ -1,0 +1,71 @@
+---
+id: token
+title: Token
+sidebar_label: Token
+---
+
+Base Endpoint: **`https://api.vyko.io/token`**
+
+import { Pill } from "../components/Components.js";
+
+## <Pill type="GET">GET</Pill> /
+
+Gets a list of all your active tokens (ID and time created). This will **NOT** reveal the actual token as you can only view this ONCE upon creation.
+
+Example Response:
+
+```json
+[
+  {
+    "created": 1589404954496,
+    "name": "Token 1",
+    "id": 188737330540185
+  },
+  {
+    "created": 1589404954496,
+    "name": "Token 2",
+    "id": 120354109493277
+  }
+]
+```
+
+## <Pill type="POST">POST</Pill> /
+
+Will create an API token with the specified name.
+
+**WARNING:** You can only view this API token once. After, you'll only be able to see it's id, display name and the date created which you can use to deactivate or track it's usage. This is for security reasons - we don't actually store your token in our database, either.
+
+Parameters:
+
+| Attribute | Required | Description                     |
+| --------- | -------- | ------------------------------- |
+| name      | Yes      | Display name for the API token. |
+
+Example Request Body:
+
+```json
+{
+  "name": "Token 1"
+}
+```
+
+Example Response:
+
+```json
+{
+  "success": true,
+  "token": "MTYzODgzNjc0NTg2ODU1LnVzci4xNTg5NDA1MzgxNTgyLjE2ODQ3ODc1NzQyNDc5Nw.be9205f1ff0e79bf99c1e04ac1fddb7f71c020de75abfe2fe7aa27e13711671a44537e9e39ed4513bb860ab340c9be3a281e545834e542fe98901f23879212e02"
+}
+```
+
+### <Pill type="DELETE">DELETE</Pill> /:id
+
+Will delete an API token so it can no longer be utilized.
+
+**WARNING:** Deletion and thus deactivation of a token is done instantly upon success so perform this action carefully as it could break your applications!
+
+Parameters:
+
+| Parameter | Required | Description                               |
+| --------- | -------- | ----------------------------------------- |
+| id        | Yes      | ID of the token you wish to have removed. |
