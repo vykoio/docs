@@ -41,7 +41,7 @@ Example Response:
 
 Gets all the emails within a certain inbox.
 
-Parameters:
+URL Parameters:
 
 | Parameter | Required | Description                                                                                                                                                                                  |
 | --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -86,13 +86,13 @@ Example Response:
 
 Create an inbox.
 
-Parameters:
+JSON Request Body:
 
 | Attribute | Required | Description             |
 | --------- | -------- | ----------------------- |
 | name      | Yes      | Display name for inbox. |
 
-Example Request Body:
+Example Response:
 
 ```json
 {
@@ -113,6 +113,8 @@ Example Response:
 ### <Pill type="DELETE">DELETE</Pill> /:id
 
 Deletes the entire inbox and emails along with removing all members (as it no longer exists). If you want to remove all emails but keep the inbox and it's members, see [DELETE /:id/email/:email_id?](#delete-idemailemail_id)
+
+URL parameters:
 
 | Parameter | Required | Description  |
 | --------- | -------- | ------------ |
@@ -136,7 +138,7 @@ Returns the email and password.
 
 **Note:** Yes, the email and password will be returned in plaintext. It is encrypted in our database, however. This is not insecure because the worst anyone is able to do is just send emails into your inbox. However, you can set a custom password for your inbox and such will be encrypted and not able to be returned to your team - this is not default as sharing and managing distrubtion of such is annoying and time consuming, especially when values are being regenerated often.
 
-Parameters:
+URL Parameters:
 
 | Attribute | Required | Description  |
 | --------- | -------- | ------------ |
@@ -155,7 +157,7 @@ Example Response:
 
 Resets the email and/or password and returns the newly generated values.
 
-Parameters:
+URL Parameters:
 
 | Attribute | Required | Description                                                                                                                                                                |
 | --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -179,6 +181,8 @@ This section refers to various endpoints associated directly with emails receive
 ### <Pill type="GET">GET</Pill> /email/:email_id
 
 Gets a specific email.
+
+URL Parameters:
 
 | Parameter | Required | Description  |
 | --------- | -------- | ------------ |
@@ -204,7 +208,7 @@ Gets a specific email.
 
 Removes either all the emails within the inbox or a certain email within such if the ID is provided.
 
-Parameters:
+URL Parameters:
 
 | Parameter | Required | Description                                                                                                   |
 | --------- | -------- | ------------------------------------------------------------------------------------------------------------- |
@@ -224,9 +228,11 @@ Example Response:
 
 Each inbox has the ability to add "members" or users that effectively have the rights to access that inbox as well. Users can be added, removed and restricted in each inbox with relative ease.
 
-### <Pill type="POST">GET</Pill> /:id/members
+### <Pill type="GET">GET</Pill> /:id/members
 
 Lists all the current users within the inbox.
+
+URL Parameters:
 
 | Attribute | Required | Description |
 | --------- | -------- | ----------- |
@@ -254,6 +260,8 @@ Example Response:
 
 Invites a certain user to an inbox. If the user does not yet have an account, supplying their email in their username field will invite them both to create an account and then join the inbox.
 
+JSON Request Body:
+
 | Attribute | Required | Description                                                              |
 | --------- | -------- | ------------------------------------------------------------------------ |
 | id        | Yes      | ID of inbox                                                              |
@@ -266,9 +274,28 @@ Invites a certain user to an inbox. If the user does not yet have an account, su
 }
 ```
 
+### <Pill type="POST">POST</Pill> /members/invite
+
+Removes a user who has been invited to the inbox to no longer be able to do so, even if they've received the email.
+
+JSON Request Body:
+
+| Attribute | Required | Description                  |
+| --------- | -------- | ---------------------------- |
+| id        | Yes      | ID of inbox                  |
+| username  | Yes      | Username OR Email of invitee |
+
+```json
+{
+  "success": true
+}
+```
+
 ### <Pill type="PATCH">PATCH</Pill> /members/role
 
 Updates a specified user's role.
+
+JSON Request Body:
 
 | Attribute | Required | Description                                                               |
 | --------- | -------- | ------------------------------------------------------------------------- |
@@ -287,6 +314,8 @@ Updates a specified user's role.
 Leaves inbox or removes a certain user from the inbox (if `user_id` is specified).
 
 **Note:** To remove a user from the inbox, the API bearer must have at least Administrator priviledges ([role 2](#get-roles) or higher). Obviously anyone with any permissions can leave themselves, though.
+
+URL Parameters:
 
 | Attribute | Required | Description                                                                                                       |
 | --------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
